@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 
 const InstallPrompt = () => {
@@ -57,6 +56,10 @@ const InstallPrompt = () => {
     window.location.reload();
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   if (!showModal && !updateAvailable) return null;
 
   return (
@@ -71,6 +74,11 @@ const InstallPrompt = () => {
         <button style={styles.installButton} onClick={handleInstall}>
           {isIosDevice ? 'Learn How' : 'INSTALL'}
         </button>
+        {isIosDevice && (
+          <button style={styles.closeButton} onClick={handleClose}>
+            Close
+          </button>
+        )}
         {updateAvailable && (
           <button style={styles.updateButton} onClick={handleUpdate}>
             Update Available - Refresh Now
@@ -120,6 +128,14 @@ const styles = {
     cursor: 'pointer',
     fontSize: '16px',
   },
+  closeButton: {
+    marginTop: '10px',
+    backgroundColor: '#DC3545',
+    color: 'white',
+    padding: '10px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
   updateButton: {
     marginTop: '10px',
     backgroundColor: '#28a745',
@@ -131,5 +147,3 @@ const styles = {
 };
 
 export default InstallPrompt;
-
-
