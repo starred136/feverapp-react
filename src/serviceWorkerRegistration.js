@@ -11,7 +11,10 @@ export function registerServiceWorker() {
             if (installingWorker.state === 'installed') {
               if (navigator.serviceWorker.controller) {
                 console.log('New update available. Reloading...');
-                window.location.reload();
+                  window.location.reload();
+                  if (registration.waiting) {
+                      registration.waiting.postMessage({ type: "SKIP_WAITING" });
+}
               }
             }
           };
